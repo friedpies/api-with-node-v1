@@ -7,7 +7,7 @@ const app = express();
 const T = new twit(config);
 
 app.set('view engine', 'pug');
-
+app.use(express.static('public'));
 
 T.get('statuses/user_timeline', {count: 5}, (err, data) => { // retrieve 5 most recent tweets
   // console.log(data);
