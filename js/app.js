@@ -6,8 +6,9 @@ const app = express();
 
 const T = new twit(config);
 
+app.set('views', '../views');
 app.set('view engine', 'pug');
-app.use(express.static('public'));
+app.use(express.static('../public'));
 
 T.get('account/verify_credentials', (err, data) => {
   const username = data.screen_name;
