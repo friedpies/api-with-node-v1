@@ -5,7 +5,7 @@ Uses Express to interface with Twitter API
 
 ## To Do:
 ### Dependency Management
-- [ ] Project includes a package.json file containing dependencies to run the project
+- [x] Project includes a package.json file containing dependencies to run the project
 - [ ] Running npm install installs relevant dependencies
 
 ### Server-Side API Access
