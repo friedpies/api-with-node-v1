@@ -21,9 +21,12 @@ T.get('account/verify_credentials', (err, data) => { // Retrieve twitter profile
   profileInfo.screen_name = data.screen_name; // store information in profileInfo object
   profileInfo.profile_image_url = data.profile_image_url;
   profileInfo.name = data.name;
+  profileInfo.followers_count = data.followers_count;
 });
 
-T.get('statuses/user_timeline', {count: 5}, (err, data) => { // retrieve 5 most recent tweets
+T.get('statuses/user_timeline', {
+  count: 5
+}, (err, data) => { // retrieve 5 most recent tweets
   data.forEach((tweet) => { // for each tweet, gather information and add to tweets array
     let tweetInfo = {};
     tweetInfo.name = tweet.user.name;
@@ -37,7 +40,9 @@ T.get('statuses/user_timeline', {count: 5}, (err, data) => { // retrieve 5 most 
   });
 });
 
-T.get('friends/list', {count: 5}, (err, data) => {
+T.get('friends/list', {
+  count: 5
+}, (err, data) => {
   data.users.forEach((friend) => {
     let friendInfo = {};
     friendInfo.name = friend.name;
@@ -48,17 +53,20 @@ T.get('friends/list', {count: 5}, (err, data) => {
   });
 });
 
-T.get('direct_messages/events/list', {count: 5}, (err, data) => {
+T.get('direct_messages/events/list', {
+  count: 5
+}, (err, data) => {
   // data.forEach((directMessage) => {
   //   console.dir(directMessage);
   // });
+  console.log(data.length);
   console.log(data);
 })
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {profileInfo: profileInfo});
 });
 
-app.listen(3000, () =>{
+app.listen(3000, () => {
   console.log('The application is running');
 });
