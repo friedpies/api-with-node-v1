@@ -20,6 +20,7 @@ app.use(express.static('../public'));
 T.get('account/verify_credentials', (err, data) => { // Retrieve twitter profile information
   if (!err){ // if no error
   profileInfo.screen_name = data.screen_name; // store information in profileInfo object
+  profileInfo.profile_banner_url = data.profile_banner_url;
   profileInfo.profile_image_url = data.profile_image_url;
   profileInfo.name = data.name;
   profileInfo.followers_count = data.followers_count;
