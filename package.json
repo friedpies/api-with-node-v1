@@ -18,6 +18,7 @@
   "homepage": "https://github.com/friedpies/api-with-node-v1#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "moment": "^2.22.2",
     "pug": "^2.0.3",
     "twit": "^2.2.9"
   }
