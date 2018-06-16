@@ -7,7 +7,7 @@ const app = express();
 
 const T = new twit(config);
 
-let profileInfo = {};
+let profileInfo = {}; // Set up empty arrays and objects for data
 let tweets = [];
 let friends = [];
 let directMessages = [];
@@ -17,9 +17,8 @@ app.set('view engine', 'pug');
 app.use(express.static('../public'));
 
 
-
 T.get('account/verify_credentials', (err, data) => { // Retrieve twitter profile information
-  if (!err){
+  if (!err){ // if no error
   profileInfo.screen_name = data.screen_name; // store information in profileInfo object
   profileInfo.profile_image_url = data.profile_image_url;
   profileInfo.name = data.name;
@@ -27,15 +26,15 @@ T.get('account/verify_credentials', (err, data) => { // Retrieve twitter profile
 } else {
   console.error(err);
   const errorMsg = {
-    text: 'Uable to get profile information'
+    text: 'Unable to get profile information'
   };
   profileInfo.push(errorMsg);
 }
 });
 
-T.get('statuses/user_timeline', {
+T.get('statuses/user_timeline', { // retrieve 5 most recent tweets
   count: 5
-}, (err, data) => { // retrieve 5 most recent tweets
+}, (err, data) => {
 
 if (!err){
   data.forEach((tweet) => { // for each tweet, gather information and add to tweets array
@@ -46,7 +45,7 @@ if (!err){
     tweetInfo.text = tweet.text;
     tweetInfo.retweet_count = tweet.retweet_count;
     tweetInfo.favorite_count = tweet.favorite_count;
-    tweetInfo.created_at = tweet.created_at;
+    tweetInfo.created_at = moment(tweet.created_at).fromNow();
     tweets.push(tweetInfo);
   });
 } else {
@@ -56,14 +55,13 @@ if (!err){
   };
   tweets.push(errorMsg);
 }
-
 });
 
-T.get('friends/list', {
+T.get('friends/list', { // get 5 most recent friends
   count: 5
 }, (err, data) => {
   if (!err) {
-    data.users.forEach((friend) => {
+    data.users.forEach((friend) => { // for each friend get name, screen name, image
         let friendInfo = {};
         friendInfo.name = friend.name;
         friendInfo.screen_name = friend.screen_name;
@@ -80,10 +78,10 @@ T.get('friends/list', {
   }
 });
 
-T.get('direct_messages/events/list', {
+T.get('direct_messages/events/list', { // get 5 most recent DMs
   count: 5
 }, (err, data) => {
-  if (data.events.length != 0) {
+  if (data.events.length != 0) { // if there is at least 1 message then gather info
   if (!err) {
     data.events.forEach((directMessage) => {
       let messageInfo = {};
@@ -99,15 +97,13 @@ T.get('direct_messages/events/list', {
     };
     directMessages.push(errorMsg);
   }
-} else {
+} else { // if no messages then display error
   console.log("No DMs");
 }
-
-
 });
 
-app.get('/', (req, res) => {
-  res.render('index', {
+app.get('/', (req, res) => { // express route to home
+  res.render('index', { // render pug template and pass in locals to be rendered
     profileInfo,
     tweets,
     friends,
