@@ -13,11 +13,11 @@ Uses Express to interface with Twitter API
 - [x] Application can be authenticated using a config.js file, and contains code allowing a config.js file to be imported into app.js
 
 ### Correct Express Routes
-- [ ] Renders a template with the user’s Twitter info using the ‘/’ route
+- [x] Renders a template with the user’s Twitter info using the ‘/’ route
 
 ### Rendered Template
-- [ ] Matches the sample layout: a header and three columns of data as shown.
+- [x] Matches the sample layout: a header and three columns of data as shown.
 
 ### Displays Correct Information
-- [ ] Displays 5 tweets, 5 friends, and username in a Jade/Pug template that roughly matches the mockups
-- [ ] App should try to display 5 direct messages, but if there aren't 5 direct messages available to display, It's okay to show fewer, as long as the app doesn't crash as a result of it.
+- [x] Displays 5 tweets, 5 friends, and username in a Jade/Pug template that roughly matches the mockups
+- [x] App should try to display 5 direct messages, but if there aren't 5 direct messages available to display, It's okay to show fewer, as long as the app doesn't crash as a result of it.

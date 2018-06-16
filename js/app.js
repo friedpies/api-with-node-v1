@@ -41,8 +41,8 @@ if (!err){
   data.forEach((tweet) => { // for each tweet, gather information and add to tweets array
     let tweetInfo = {};
     tweetInfo.name = tweet.user.name;
-    tweetInfo.screen_name = tweet.screen_name;
-    tweetInfo.profile_image_url = tweet.profile_image_url;
+    tweetInfo.screen_name = tweet.user.screen_name;
+    tweetInfo.profile_image_url = tweet.user.profile_image_url;
     tweetInfo.text = tweet.text;
     tweetInfo.retweet_count = tweet.retweet_count;
     tweetInfo.favorite_count = tweet.favorite_count;
@@ -90,7 +90,6 @@ T.get('direct_messages/events/list', { // get 5 most recent DMs
       messageInfo.time = moment(parseInt(directMessage.created_timestamp)).fromNow();
       directMessages.push(messageInfo);
     });
-    console.dir(directMessages);
   } else {
     console.error(err);
     const errorMsg = {
