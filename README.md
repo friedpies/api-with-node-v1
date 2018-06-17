@@ -1,11 +1,10 @@
 # api-with-node-v1
 # Treehouse FSJS Project 7
-
-# To run use:
-node js/app.js
-Place config.js in root directory
-
 Uses Express to interface with Twitter API
+
+### To run use:
+node `js/app.js` and place config.js in root directory
+
 
 ## To Do:
 ### Dependency Management
