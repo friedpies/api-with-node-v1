@@ -1,7 +1,7 @@
 # api-with-node-v1
-#Treehouse FSJS Project 7
+# Treehouse FSJS Project 7
 
-To run use:
+# To run use:
 node js/app.js
 Place config.js in root directory
 
