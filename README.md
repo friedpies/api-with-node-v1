@@ -3,7 +3,7 @@
 Uses Express to interface with Twitter API
 
 ### To run use:
-Place config.js in root directory then use 'npm install' to install modules and `node js/app.js` to run
+Place config.js in root directory then use `npm install` to install modules and `node js/app.js` to run
 
 
 ## To Do:
