@@ -12,9 +12,9 @@ let tweets = [];
 let friends = [];
 let directMessages = [];
 
-app.set('views', '../views');
+app.set('views', 'views');
 app.set('view engine', 'pug');
-app.use(express.static('../public'));
+app.use(express.static('public'));
 
 
 T.get('account/verify_credentials', (err, data) => { // Retrieve twitter profile information
